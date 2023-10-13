@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         // Apply the movement to the rigidbody's velocity, allowing movement in all directions
         rb.velocity = movement * moveSpeed;
 
-        // Optionally, you can add vertical movement using the same input setup (for example, space and control keys)
+        //vertical movement using the same input setup (for example, space and control keys)
         float verticalMovement = Input.GetAxis("Jump") - Input.GetAxis("Crouch");
         Vector3 verticalVelocity = new Vector3(0f, verticalMovement, 0f).normalized * moveSpeed;
 
