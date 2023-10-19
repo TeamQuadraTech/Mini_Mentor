@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = movement * moveSpeed;
 
         //vertical movement using the same input setup (for example, space and control keys)
-        float verticalMovement = Input.GetAxis("Jump") - Input.GetAxis("Crouch");
+        float verticalMovement = Input.GetAxis("Jump");
         Vector3 verticalVelocity = new Vector3(0f, verticalMovement, 0f).normalized * moveSpeed;
 
         // Apply vertical movement to the rigidbody's velocity
