@@ -1082,8 +1082,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1054367036}
-  offset: {x: 5, y: 1.5, z: -3}
-  rotationspeed: 0
+  offset: {x: 1, y: 1.5, z: -3}
+  rotationspeed: 25
 --- !u!1001 &1302150549
 PrefabInstance:
   m_ObjectHideFlags: 0
