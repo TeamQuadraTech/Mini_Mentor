@@ -1,31 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
-    public Transform player; // Reference to the player's transform
-    public Vector3 offset = new Vector3(1.5f, 2f, -3f); // Offset to position the camera relative to the player
-    public float rotationspeed;
+    public Transform target;  // The player's Transform
+    public Vector3 offset;    // The offset from the player
+    public float smoothSpeed = 50.0f;  // The smoothness of camera movement
+    public float rotationSpeed = 150.0f;  // The speed at which the camera follows player rotation
 
+    private Vector3 desiredPosition;
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if (player == null)
+        if (target == null)
         {
-            Debug.LogWarning("Player transform not assigned!");
+            Debug.LogWarning("Target (player) not set for CameraFollow script.");
             return;
         }
 
-        // Calculate the desired position based on player's position and offset
-        Vector3 desiredPosition = player.position + offset;
+        // Calculate the desired position for the camera
+        desiredPosition = target.position + target.TransformDirection(offset);
 
-        // Smoothly move the camera to the desired position
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 5f);
+        // Interpolate between the current position and the desired position for smooth camera movement
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        transform.position = smoothedPosition;
 
-        // Make the camera look at the player
-        transform.LookAt(player.position);
+        // Rotate the camera to match the player's rotation
+        Quaternion desiredRotation = Quaternion.LookRotation(target.position - transform.position, target.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotationSpeed * Time.deltaTime);
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up, horizontalInput * rotationspeed * Time.deltaTime);
+
     }
 }
