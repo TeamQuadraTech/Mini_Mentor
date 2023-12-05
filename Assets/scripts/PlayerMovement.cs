@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 2f; // Adjust this value to set the player's movement speed.
+    public float moveSpeed = 1f; // Adjust this value to set the player's movement speed.
     private Rigidbody rb;
 
     // Start is called before the first frame update
