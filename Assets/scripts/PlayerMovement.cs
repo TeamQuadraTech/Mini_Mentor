@@ -32,19 +32,5 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply vertical movement to the rigidbody's velocity
         rb.velocity += verticalVelocity;
-
-        if (transform.position.x < 2)
-        {
-            transform.position = new Vector3(2, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > 7)
-        {
-            transform.position = new Vector3(7, transform.position.y, transform.position.z);
-        }
-        if (transform.position.z < -15)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -15);
-        }
-
     }
 }
